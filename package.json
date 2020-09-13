@@ -1,34 +1,22 @@
 {
-  "title": "Roberto Arruda WebSite",
   "name": "arruda-portfolio-template",
   "version": "1.1.0",
+  "title": "Roberto Arruda WebSite",
   "description": "My portfolio website",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "css",
-    "sass",
-    "html",
-    "responsive"
-  ],
-  "homepage": "https://roberto0arruda.github.io",
-  "bugs": {
-    "url": "https://github.com/roberto0arruda/roberto0arruda.github.io/issues"
-  },
-  "license": "MIT",
   "author": "Roberto Arruda",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/roberto0arruda/roberto0arruda.github.io.git"
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
+    "@vue/cli-service": "~4.5.6",
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
@@ -40,6 +28,22 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
     "jquery-easing": "^0.0.1",
-    "merge-stream": "^2.0.0"
+    "merge-stream": "^2.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "bugs": {
+    "url": "https://github.com/roberto0arruda/roberto0arruda.github.io/issues"
+  },
+  "homepage": "https://roberto0arruda.github.io",
+  "keywords": [
+    "css",
+    "sass",
+    "html",
+    "responsive"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roberto0arruda/roberto0arruda.github.io.git"
   }
 }

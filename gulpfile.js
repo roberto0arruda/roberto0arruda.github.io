@@ -13,7 +13,6 @@ const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const uglify = require('gulp-uglify')
 
-
 // Load package.json for banner
 const pkg = require('./package.json')
 
@@ -21,18 +20,19 @@ const pkg = require('./package.json')
 const banner = [
   '/*!\n',
   ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-  ' * Copyright ' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+  ' * Copyright ' + new Date().getFullYear(),
+  ' <%= pkg.author %>\n',
   ' */\n',
-  '\n'
+  '\n',
 ].join('')
 
 // BrowserSync
 function bSync(done) {
   browserSync.init({
     server: {
-      baseDir: './'
+      baseDir: './',
     },
-    port: 3000
+    port: 3000,
   })
   done()
 }
@@ -51,27 +51,40 @@ function clean() {
 // Bring third party dependencies from node_modules into libs directory
 function modules() {
   // Bootstrap JS
-  let bootstrapJS = gulp.src('./node_modules/bootstrap/dist/js/*').pipe(gulp.dest('./libs/bootstrap/js'))
+  let bootstrapJS = gulp
+    .src('./node_modules/bootstrap/dist/js/*')
+    .pipe(gulp.dest('./libs/bootstrap/js'))
 
   // Font Awesome CSS
-  let fontAwesomeCSS = gulp.src('./node_modules/@fortawesome/fontawesome-free/css/**/*')
+  let fontAwesomeCSS = gulp
+    .src('./node_modules/@fortawesome/fontawesome-free/css/**/*')
     .pipe(gulp.dest('./libs/fontawesome-free/css'))
 
   // Font Awesome Webfonts
-  let fontAwesomeWebfonts = gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
+  let fontAwesomeWebfonts = gulp
+    .src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
     .pipe(gulp.dest('./libs/fontawesome-free/webfonts'))
 
   // Jquery Easing
-  let jqueryEasing = gulp.src('./node_modules/jquery-easing/*.js')
+  let jqueryEasing = gulp
+    .src('./node_modules/jquery-easing/*.js')
     .pipe(gulp.dest('./libs/jquery-easing'))
 
   // JQuery
-  let jquery = gulp.src([
-    './node_modules/jquery/dist/*',
-    '!./node_modules/jquery/dist/core.js'
-  ]).pipe(gulp.dest('./libs/jquery'))
+  let jquery = gulp
+    .src([
+      './node_modules/jquery/dist/*',
+      '!./node_modules/jquery/dist/core.js',
+    ])
+    .pipe(gulp.dest('./libs/jquery'))
 
-  return merge(bootstrapJS, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing)
+  return merge(
+    bootstrapJS,
+    fontAwesomeCSS,
+    fontAwesomeWebfonts,
+    jquery,
+    jqueryEasing
+  )
 }
 
 // CSS task
@@ -79,21 +92,29 @@ function css() {
   return gulp
     .src('./scss/**/*.scss')
     .pipe(plumber())
-    .pipe(sass({
-      outputStyle: 'expanded',
-      includePaths: './node_modules',
-    }))
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        includePaths: './node_modules',
+      })
+    )
     .on('error', sass.logError)
-    .pipe(autoprefixer({
-      cascade: false
-    }))
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
+    .pipe(
+      autoprefixer({
+        cascade: false,
+      })
+    )
+    .pipe(
+      header(banner, {
+        pkg: pkg,
+      })
+    )
     .pipe(gulp.dest('./css'))
-    .pipe(rename({
-      suffix: '.min'
-    }))
+    .pipe(
+      rename({
+        suffix: '.min',
+      })
+    )
     .pipe(cleanCSS())
     .pipe(gulp.dest('./css'))
     .pipe(browserSync.stream())
@@ -102,19 +123,20 @@ function css() {
 // JS task
 function js() {
   return gulp
-    .src([
-      './js/*.js',
-      '!./js/*.min.js'
-    ])
+    .src(['./js/*.js', '!./js/*.min.js'])
     .pipe(uglify())
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
+    .pipe(
+      header(banner, {
+        pkg: pkg,
+      })
+    )
+    .pipe(
+      rename({
+        suffix: '.min',
+      })
+    )
     .pipe(gulp.dest('./js'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 }
 
 // Watch files

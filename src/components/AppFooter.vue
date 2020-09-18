@@ -49,10 +49,10 @@
             Este projeto foi desenvolvido para demonstrar alguns conhecimentos
             adquiridos, utilizando tecnologias como
             <br />
-            (Bootstrap - JQuery - SCSS - Gulp)
+            (VueJs - Bootstrap - SCSS)
             <br />
             por
-            <a href="//roberto0arruda.github.io">Roberto Arruda.</a>
+            <a href="//roberto0arruda.github.io">Roberto Arruda</a>
           </p>
         </div>
       </div>
@@ -66,11 +66,15 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .footer {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     background-color: $secondary;
     color: $white;
+  }
+
+  .copyright {
+    background-color: darken($secondary, 10%);
   }
 </style>

@@ -57,7 +57,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   #nav {
     padding-top: 1rem;
     padding-bottom: 1rem;
